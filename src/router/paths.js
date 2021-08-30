@@ -27,7 +27,8 @@ export default [
         title: 'Registrar'
       },
       name: 'Exito',
-      component: () => import(/* webpackChunkName: "registro" */ '../components/Exito')
+      component: () => import(/* webpackChunkName: "registro" */ '../components/Exito'),
+      props:true,
     },
     {
       path: '/registrar',

@@ -1,9 +1,9 @@
 import AuthService from '../services/AuthService'
 
 const initialState = {
-  first_name: '',
-  last_name: '',
-  email: ''
+  name: '',
+  lastname: '',
+  username: ''
 }
 
 const state = () => ({
@@ -15,6 +15,7 @@ const mutations = {
   AUTH_SUCCESS: (state, { token, user }) => {
     state.user = user
     state.token = token
+    console.log(state.user)
   },
   UPDATE_Token: (state, payload) => {
     state.token=payload
@@ -26,15 +27,13 @@ const mutations = {
 const actions = {
   LOGIN: async ({ commit }, credentials) => {
     try {
-      console.log('store')
       let { data, status } = await AuthService.login(credentials)
       if (status === 200) {
-        console.log(data)
         let token = data.access_token
-        let user = data.user
+        let user = data
          commit('AUTH_SUCCESS', { token, user})
       }
-      return null
+      return {data: data, error: null}
     } catch (error) {
       return { data: error.response.data, status: error.response.status }
     }

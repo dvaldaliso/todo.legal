@@ -6,7 +6,7 @@
     >
       <v-main>
         <Logo/>
-        <div class="box">
+        <div class="box resp">
            <router-view></router-view>
         </div>
         <v-layout  align-center justify-center >
@@ -48,8 +48,8 @@ export default {
 </script>
 <style scoped>
 .box{
-    border-radius: 0px 60px 0px 60px;
-    background-color:#FAFAFA;
+    border-radius: 0px 100px 0px 100px;
+    background-color:red;
     float: none;
     position: relative;
 }
@@ -59,5 +59,16 @@ export default {
  }
 li a {
   text-decoration: none;
+}
+
+@media only screen and (min-width: 600px) {
+ .resp{
+   margin: 25px;
+ }
+}
+@media only screen and (min-width: 800px) {
+ .resp{
+   margin: 50px;
+ }
 }
 </style>

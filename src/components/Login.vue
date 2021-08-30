@@ -65,7 +65,7 @@
           <v-card-actions>
             <v-col>
             <v-row justify="center">
-<router-link style="text-decoration:none" to="/registrar">No tengo cuenta, crear una gratis</router-link>
+               <router-link style="text-decoration:none" to="/registrar">No tengo cuenta, crear una gratis</router-link>
 
             </v-row>
             <v-row>
@@ -122,12 +122,13 @@
                   password: this.pass
         };
          this.$store.dispatch('UPDATE_Token',null)
-          this.$store.dispatch('LOGIN', post).then(error => {
+          this.$store.dispatch('LOGIN', post).then(result => {
           this.loading = false
-          if (error === null) {
+          if (result.error === null) {
+             this.$router.push({ name: 'Exito'})
               console.log('success')
           } else {
-            let { data, status } = error
+            let { data, status } = result.error
             if (status === 422) {
              console.log('error validacion')
             } else {

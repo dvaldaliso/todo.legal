@@ -1,10 +1,9 @@
 <template>
       <v-card
-      color="#FAFAFA"
-        class="elevation-0 "
+        color="#FAFAFA"
+        class="cardColor elevation-0 "
       >
-      <v-col class=" pa-0">
-        <v-row align="center" justify="center"> 
+           <v-row align="center" justify="center"> 
              <v-icon color="#42B852" size="60">
                mdi-checkbox-marked-circle-outline
               </v-icon>
@@ -12,30 +11,43 @@
           <v-row align="center" justify="center" class=" ma-2 pa-2"> 
             <h2 class="One"  :style="{color:'#2C4477'}">¡Validación Exitosa!</h2>
            </v-row>
-           
-          </v-col>
+            <div  class="rounded-card" >
+              <v-row  class=" pa-4">
+                <v-col class=" ma-5">
+                <v-row align="center" > 
+                   <h3 :style="{color:'#2C4477'}" >Datos Verificados:</h3>
+                </v-row>
+                <v-row >
+                  <hr style="height:5px; width:50%;margin:0;background: #2C4477"> 
+                </v-row>
+                 <v-row >
+                  <h3>
+                      Nombre y Apellidos 
+                   </h3>
+                </v-row>
+                <v-row>
+                  {{nombre}}
+                </v-row>
+                  <v-row >
+                  <h3 >
+                      Cédula de Identidada
+                   </h3>
+                  
+                </v-row>
+                <v-row>
+                   {{user.username}}
+                </v-row>
+                </v-col>
+               </v-row> 
+            </div>
+         
+        <v-card-actions>
          <v-col>
-          <v-row align="center" class=" ml-2 mr-2 pl-2 pr-2">        
-            <v-card-text >
-              <v-row align="center" justify="center" class=" ma-2 pa-2"> 
-              <hr style="height:5px; width:50%;margin:0;background: #2C4477"> 
-           </v-row>
-               lsls
-            </v-card-text>
-          </v-row>
-          </v-col>
-          <v-card-actions>
-            <v-col>
-            <v-row justify="center">
-
-            </v-row>
             <v-row>
             <v-spacer></v-spacer>
-
                <v-btn
               class="ml-0 primary--text"
               depressed
-              :loading=loading
             >
               FINALIZAR
               <v-icon
@@ -46,47 +58,46 @@
           </v-icon>
             </v-btn>
             </v-row>
-            </v-col>
-           
-          </v-card-actions>
+         </v-col>
+        </v-card-actions>
       </v-card>
 </template>
 <script>
   export default {
+    name: 'Exito',
     data: () => ({
-      valid: false,
-      loading:false,
-      show1: false,
-      cedula: null,
-       pass: null,
-      cedulaRules: [
-        v => !!v || 'Cédula de la Identidad es requerida',
-        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      ],
+      user:Object,
      
-      contrasenalRules: [
-        v => !!v || 'contraseña es requerida',
-      ],
     
     }),
     mounted (){
     this.valid=false
+    this.user=this.$store.getters.CURRENT_USER
     },
     methods: {
       continuar () {
         if(this.$refs.form.validate()){
-         this.loading=true
+          console.log('asd')
         }
        
         
       },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      },
-    },
+     },
+    computed: {
+    nombre () {
+      return this.user.name +' '+this.user.lastname 
+    }
+    
+  },
   }
 </script>
 
+<style scoped>
+
+.rounded-card{
+   border-radius:0px 80px 0px 80px;
+    background-color:blue;
+    margin: 30px;
+}
+
+</style>
