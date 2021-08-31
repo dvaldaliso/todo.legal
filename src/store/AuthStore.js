@@ -20,6 +20,9 @@ const mutations = {
   UPDATE_Token: (state, payload) => {
     state.token=payload
   },
+  FINALIZAR: (state) => {
+    state.user=null
+  },
 
 
 }
@@ -41,6 +44,14 @@ const actions = {
   UPDATE_Token: async ({ commit },payload) => {
     try {
       commit('UPDATE_Token', payload)
+      return null
+    } catch (error) {
+      return error
+    }
+  },
+  FINALIZAR: async ({ commit }) => {
+    try {
+      commit('FINALIZAR')
       return null
     } catch (error) {
       return error

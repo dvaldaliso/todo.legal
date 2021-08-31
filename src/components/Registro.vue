@@ -115,16 +115,20 @@
     }),
     mounted (){
     this.valid=false
+      if(this.$store.getters.CURRENT_USER ==null){
+      this.$router.push({ name: 'Login'})
+      alert('debe registrarse')
+    }
     },
     methods: {
       registrar () {
         if(this.$refs.form.validate()){
          this.loading=true
          let post = {
-            name: "Juan",
-            last_name: "Perez Lopez",
+            name: "David",
+            last_name: "Vald Lopez",
             phone_number: "8091010101",
-            email: "xxx.xxx@todolegal.com",
+            email: "ddd.xxx@todolegal.com",
             username: this.cedula,
             password: this.pass
         };
@@ -136,16 +140,16 @@
           } else {
             let { data, status } = error
             if (status === 422) {
-             console.log('error validacion')
+             alert('error validacion')
             } else {
               // mostrando el error al usuario en una notificación
               console.log(data.msg)
+              alert(data.msg)
             }
           }
         })
      
         }
-       this.loading=false
         
       },
       reset () {

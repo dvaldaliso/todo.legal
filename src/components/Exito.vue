@@ -14,27 +14,27 @@
             <div  class="rounded-card" >
               <v-row  class=" pa-4">
                 <v-col class=" ma-5">
-                <v-row align="center" > 
+                <v-row  class="ma-2" > 
                    <h3 :style="{color:'#2C4477'}" >Datos Verificados:</h3>
                 </v-row>
-                <v-row >
+                <v-row class="ma-2">
                   <hr style="height:5px; width:50%;margin:0;background: #2C4477"> 
                 </v-row>
-                 <v-row >
-                  <h3>
+                 <v-row class="ma-2">
+                  <h3 :style="{color:'#2C4477'}">
                       Nombre y Apellidos 
                    </h3>
                 </v-row>
-                <v-row>
+                <v-row class="ma-2">
                   {{nombre}}
                 </v-row>
-                  <v-row >
-                  <h3 >
+                  <v-row class="ma-2">
+                  <h3 :style="{color:'#2C4477'}">
                       Cédula de Identidada
                    </h3>
                   
                 </v-row>
-                <v-row>
+                <v-row class="ma-2">
                    {{user.username}}
                 </v-row>
                 </v-col>
@@ -48,6 +48,7 @@
                <v-btn
               class="ml-0 primary--text"
               depressed
+              @click="finalizar"
             >
               FINALIZAR
               <v-icon
@@ -72,13 +73,24 @@
     }),
     mounted (){
     this.valid=false
-    this.user=this.$store.getters.CURRENT_USER
+    if(this.$store.getters.CURRENT_USER !=null){
+      this.user=this.$store.getters.CURRENT_USER
+    }else{
+      this.$router.push({ name: 'Login'})
+      alert('debe registrarse')
+    }
+    
     },
     methods: {
-      continuar () {
-        if(this.$refs.form.validate()){
-          console.log('asd')
-        }
+      finalizar () {
+         this.$store.dispatch('FINALIZAR').then(result => {
+          if (result === null) {
+             this.$router.push({ name: 'Login'})
+              console.log('success')
+          } else {
+          console.log('no finalizo')
+          }
+        })
        
         
       },
@@ -96,7 +108,7 @@
 
 .rounded-card{
    border-radius:0px 80px 0px 80px;
-    background-color:blue;
+    background-color:#FFFFFF;
     margin: 30px;
 }
 

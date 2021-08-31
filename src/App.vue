@@ -11,7 +11,7 @@
         </div>
         <v-layout  align-center justify-center >
         <v-footer  height="auto" class="pa-3">
-         <span class="text-caption" >{{isLoginPage}}</span>
+         <span class="text-caption" :style="{color:'#2C4477'}" >{{isLoginPage}}</span>
        </v-footer>  
         </v-layout>
      </v-main>
@@ -49,7 +49,7 @@ export default {
 <style scoped>
 .box{
     border-radius: 0px 100px 0px 100px;
-    background-color:red;
+    background-color:#FAFAFA;
     float: none;
     position: relative;
 }
