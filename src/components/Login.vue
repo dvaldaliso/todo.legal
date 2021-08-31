@@ -1,5 +1,6 @@
 <template>
       <v-card
+     
       color="#FAFAFA"
         class="cardColor elevation-0 "
       >

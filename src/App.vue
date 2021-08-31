@@ -4,12 +4,17 @@
     pa-0
     fill-height fluid
     >
-      <v-main>
+      <v-main >
         <Logo/>
-        <div class="box resp">
-           <router-view></router-view>
-        </div>
-        <v-layout  align-center justify-center >
+        <v-row align="center"
+          justify="center">
+        <v-col style="max-width: 600px;">
+          <div class="box resp" >
+            <router-view></router-view>
+          </div>
+        </v-col>
+        </v-row>
+        <v-layout align-center justify-center >
         <v-footer  height="auto" class="pa-3">
          <span class="text-caption" :style="{color:'#2C4477'}" >{{isLoginPage}}</span>
        </v-footer>  
@@ -52,6 +57,7 @@ export default {
     background-color:#FAFAFA;
     float: none;
     position: relative;
+    
 }
 .cardColor {
    background-color: rgba(255, 255, 255, 0.5) !important;
@@ -61,14 +67,5 @@ li a {
   text-decoration: none;
 }
 
-@media only screen and (min-width: 600px) {
- .resp{
-   margin: 25px;
- }
-}
-@media only screen and (min-width: 800px) {
- .resp{
-   margin: 50px;
- }
-}
+
 </style>
